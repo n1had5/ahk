@@ -1,7 +1,7 @@
-﻿#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
-SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+﻿#NoEnv
+SendMode Input
+SetWorkingDir %A_ScriptDir%
+
 ; Map Capslock to Control
 ; Map press & release of Capslock with no other key to Esc
 ; Press both shift keys together to toggle Capslock
@@ -36,4 +36,4 @@ ToggleCaps(){
 LShift & RShift::ToggleCaps()
 RShift & LShift::ToggleCaps()
 
-; ^!r::Reload
+^!r::Reload

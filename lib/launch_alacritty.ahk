@@ -6,12 +6,12 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 openWT(asAdmin:=false) {
 	; If Terminal is Already Open
-	if WinExist("ahk_exe WindowsTerminal.exe") {
+	if WinExist("ahk_exe alacritty.exe") {
 		WinActivate
 		Return
 	}
 
-	; If File Explorer is Active (Source: https://www.winhelponline.com/blog/open-command-prompt-current-folder-keyboard-shortcut)
+	; If File Explorer is Active
 	if WinActive("ahk_class CabinetWClass") || WinActive("ahk_class ExploreWClass") {
 		WinHWND := WinActive()
 		For win, in ComObjCreate("Shell.Application").Windows {
@@ -27,17 +27,17 @@ openWT(asAdmin:=false) {
 
 	if asAdmin {
 		Try {
-			Run *RunAs wt.exe, %dir%
+			Run *RunAs alacritty.exe, %dir%
 		} Catch {
 			MsgBox, Access Denied. Try Again.
 			Return
 		}
 	} else {
-		Run wt.exe, %dir%
+		Run alacritty.exe, %dir%
 	}
 
 	; Make Terminal Window Active Once Opened
-	WinWait, ahk_exe WindowsTerminal.exe, , 3
+	WinWait, ahk_exe alacritty.exe, , 3
 	if ErrorLevel
 		MsgBox, Couldn't Find Terminal
 	else
